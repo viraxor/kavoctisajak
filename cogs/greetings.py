@@ -1,8 +1,8 @@
 from discord.ext import commands
 import discord
 
-def setup(bot):
-    bot.add_cog(Greetings(bot))
+async def setup(bot):
+    await bot.add_cog(Greetings(bot))
     
 class Greetings(commands.Cog):
     def __init__(self, bot):
