@@ -14,6 +14,6 @@ class Misc(commands.Cog):
         await ctx.send(arg)
 
     @commands.command(name="ask")
-    async def ask(ctx):
+    async def ask(self, ctx):
         ask = ["Yes","Yep","I think so","Probably","Maybe","I don't know","Probably Not","I don't think so","Nope","No"]
         await ctx.send(f"{random.choice(ask)}")
