@@ -14,6 +14,10 @@ async def reload(ctx, name: str):
     await bot.reload_extension(f"cogs.{name}")
     await ctx.send("reloaded")
 
+@bot.command(name="say")
+async def say(ctx, *, arg):
+    await ctx.send(arg)
+
 load_dotenv("./.env")
 token = getenv("TOKEN")
 
