@@ -17,3 +17,7 @@ class Misc(commands.Cog):
     async def ask(self, ctx):
         ask = ["Yes","Yep","I think so","Probably","Maybe","I don't know","Probably Not","I don't think so","Nope","No"]
         await ctx.send(f"{random.choice(ask)}")
+
+    @commands.command(name="roll")
+    async def roll(self, ctx, number : int):
+        await ctx.send(f"{ctx.author.mention} rolls {random.randint(1, number)}!")
