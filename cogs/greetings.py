@@ -15,3 +15,7 @@ class Greetings(commands.Cog):
     @commands.command(name="goodbye", aliases=["bye"])
     async def goodbye(self, ctx):
         await ctx.send(f"Goodbye, {ctx.author.mention}!")
+
+    @commands.command(name="say")
+    async def say(self, ctx, *, arg):
+        await ctx.send(arg)
