@@ -17,12 +17,17 @@ owners = [1172378388212760587, 523887995850326017]
 async def reload(ctx, name: str):
     if ctx.author.id in owners:
         session = aiohttp.ClientSession()
-        response = await session.get(f"https://raw.githubusercontent.com/viraxor/kavoctisajak/main/cogs/{name}.py?token=GHSAT0AAAAAACN54HLO672SEOBSP5VVDJTUZOD7EFQ")
-        content = await response.content.read()
-        with open(f"./cogs/{name.py}", "w") as f:
+        r1 = await session.get(f"https://github.com/viraxor/kavoctisajak/raw/main/cogs/{name}.py")
+        content = await r1.content.read()
+        await session.close()
+        await ctx.send("saving cog")
+        with open(f"./cogs/{name}.py", "wb") as f:
             f.write(content)
-            
-        await bot.reload_extension(f"cogs.{name}")
+        
+        try:
+            await bot.reload_extension(f"cogs.{name}")
+        except commands.errors.ExtensionNotLoaded:
+            await bot.load_extension(f"cogs.{name}")
         await ctx.send("reloaded")
 
 load_dotenv("./.env")
