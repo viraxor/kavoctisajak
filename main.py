@@ -20,5 +20,6 @@ token = getenv("TOKEN")
 @bot.event
 async def on_ready():
     await bot.load_extension("cogs.greetings")
+    await bot.load_extension("cogs.misc")
     
 bot.run(token)
