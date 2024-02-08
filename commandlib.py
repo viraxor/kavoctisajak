@@ -1,3 +1,5 @@
+import random
+
 class Commands():
     def __init__(self, bot):
         self.bot = bot
@@ -18,6 +20,11 @@ class Commands():
         args = msg.text[2:].split(" ")
         output = ' '.join(args[1:])
         await self.bot.send_message(msg.chat.id, output)
+
+    async def roll(self, msg):
+        args = msg.text[2:].split(" ")
+        number = random.randint(1, int(args[1]))
+        await self.bot.send_message(msg.chat.id, f"{msg.from_user.first_name} rolls {number}!")
         
     async def process(self, msg):
         args = msg.text[2:].split(" ")
