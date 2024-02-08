@@ -11,14 +11,10 @@ class Commands():
         "roll": self.roll,
         "github": self.github,
         "cock": self.cock,
-        "dividebyzero": self.divide_by_zero
         }
         
     async def nothing(self, msg):
         pass
-
-    async def divide_by_zero(self, msg):
-        await self.bot.reply_to(msg, f"{1/0}")
         
     async def hello(self, msg):
         await self.bot.reply_to(msg, f"Hello, {msg.from_user.first_name}!")
