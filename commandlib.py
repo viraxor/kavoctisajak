@@ -7,7 +7,8 @@ class Commands():
         self.command_dict = {
         "hello": self.hello,
         "reload": self.nothing,
-        "say": self.say
+        "say": self.say,
+        "roll": self.roll
         }
         
     async def nothing(self, msg):
@@ -23,7 +24,10 @@ class Commands():
 
     async def roll(self, msg):
         args = msg.text[2:].split(" ")
-        number = random.randint(1, int(args[1]))
+        try:
+            number = random.randint(1, int(args[1]))
+        except:
+            number = random.randint(1, 6)
         await self.bot.send_message(msg.chat.id, f"{msg.from_user.first_name} rolls {number}!")
         
     async def process(self, msg):
