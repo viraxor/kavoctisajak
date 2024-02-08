@@ -8,7 +8,9 @@ class Commands():
         "hello": self.hello,
         "reload": self.nothing,
         "say": self.say,
-        "roll": self.roll
+        "roll": self.roll,
+        "github": self.github,
+        "cock": self.cock,
         }
         
     async def nothing(self, msg):
@@ -29,6 +31,12 @@ class Commands():
         except:
             number = random.randint(1, 6)
         await self.bot.send_message(msg.chat.id, f"{msg.from_user.first_name} rolls {number}!")
+
+    async def cock(self, msg):
+        await self.bot.reply_to(msg, "8" + random.randint(0,15)*"=" + "D")
+
+    async def github(self, msg):
+        await self.bot.reply_to(msg, "https://github.com/viraxor/kavoctisajak")
         
     async def process(self, msg):
         args = msg.text[2:].split(" ")
