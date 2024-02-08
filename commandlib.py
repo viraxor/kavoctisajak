@@ -45,5 +45,7 @@ class Commands():
             function = self.command_dict[args[0]]
         except KeyError:
             await self.bot.reply_to(msg, "Invalid command.")
+        except Exception as exc:
+            await self.bot.reply_to(msg, f"{exc}")
         else:
             await function(msg)
