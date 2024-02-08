@@ -20,7 +20,7 @@ owners = [6632670569, 6786212935]
 async def command_handler(msg):
     await commands.process(msg)
     
-@bot.message_handler(regexp="^k!reload")
+@bot.message_handler(commands=["reload"])
 async def reload(msg):
     if msg.from_user.id in owners:
         session = aiohttp.ClientSession()
