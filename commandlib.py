@@ -19,6 +19,7 @@ class Commands():
         
     async def process(self, msg):
         args = msg.text[2:].split(" ")
+        await self.bot.reply_to(msg, f"{args}")
         
         try:
             function = self.command_dict[args[0]]
