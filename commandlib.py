@@ -17,7 +17,7 @@ class Commands():
     async def say(self, msg):
         args = msg.text[2:].split(" ")
         output = ' '.join(args[1:])
-        await self.bot.reply_to(msg, msg.text)
+        await self.bot.reply_to(msg, output)
         
     async def process(self, msg):
         args = msg.text[2:].split(" ")
