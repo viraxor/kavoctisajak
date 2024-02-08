@@ -53,4 +53,4 @@ class Commands():
             try:
                 await function(msg)
             except Exception as exc:
-                await self.bot.reply_to(msg, f"{type(exc)}: {exc}")
+                await self.bot.reply_to(msg, f"{type(exc)=}: {exc=}")
