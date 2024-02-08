@@ -15,6 +15,8 @@ class Commands():
         await self.bot.reply_to(msg, f"Hello, {msg.from_user.first_name}!")
 
     async def say(self, msg):
+        args = msg.text[2:].split(" ")
+        output = ' '.join(args[1:])
         await self.bot.reply_to(msg, msg.text)
         
     async def process(self, msg):
