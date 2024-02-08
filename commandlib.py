@@ -4,7 +4,8 @@ class Commands():
         
         self.command_dict = {
         "hello": self.hello,
-        "reload": self.nothing
+        "reload": self.nothing,
+        "say": self.say
         }
         
     async def nothing(self, msg):
@@ -12,6 +13,9 @@ class Commands():
         
     async def hello(self, msg):
         await self.bot.reply_to(msg, f"Hello, {msg.from_user.first_name}!")
+
+    async def say(self, msg):
+        await self.bot.reply_to(msg, msg.text)
         
     async def process(self, msg):
         args = msg.text[2:].split(" ")
