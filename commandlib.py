@@ -131,10 +131,11 @@ class Commands():
             await self.bot.reply_to(msg, "You need to pass an argument/reply to a message.")
 
     def mock_r(self, text):
+        text = list(text)
         for i in range(0, len(text)-1):
             if random.randint(0, 1) == 1:
                 text[i] = text[i].swapcase()
-        return text
+        return ''.join(text)
 
     async def mock(self, msg, args=None):
         """Usage: k!mock <sentence> | Mocks a sentence."""
