@@ -174,7 +174,10 @@ class Commands():
             output = await self.loop.run_in_executor(None, fn)
             await self.bot.reply_to(msg, output)
         elif msg.reply_to_message:
-            number = int(args[0])
+            try:
+                number = int(args[0])
+            except:
+                number = 13
             fn = partial(self.rot_r, msg.reply_to_message.text, number)
             output = await self.loop.run_in_executor(None, fn)
             await self.bot.reply_to(msg, output)
