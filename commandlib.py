@@ -1,5 +1,5 @@
 import random
-hfuaihfdiuqabfdqwauydbquwa
+
 class Commands():
     def __init__(self, bot):
         self.bot = bot
