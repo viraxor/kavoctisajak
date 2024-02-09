@@ -72,7 +72,7 @@ class Commands():
         if args == []:
             await self.bot.reply_to(msg, ' '.join(args)[::-1])
         elif msg.reply_to_message:
-            await self.bot.reply_to(msg, msg.external_reply.text[::-1])
+            await self.bot.reply_to(msg, msg.reply_to_message.text[::-1])
         else:
             await self.bot.reply_to(msg, "You need to pass an argument/reply to a message.")
         
