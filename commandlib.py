@@ -22,7 +22,7 @@ class Commands():
         }
 
         self.construct_help()
-        loop = asyncio.get_event_loop()
+        self.loop = asyncio.get_event_loop()
 
     def construct_help(self):
         self.help_msg = ""
