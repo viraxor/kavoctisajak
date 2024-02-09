@@ -42,7 +42,7 @@ async def reload(msg):
             commands = commandlib.Commands(bot)
         except Exception as exc:
             commands = old_commands
-            await self.bot.reply_to(msg, f"{type(exc)}: {exc}")
+            await bot.reply_to(msg, f"{type(exc)}: {exc}")
         else:
             await bot.send_message(msg.chat.id, "success")
 
