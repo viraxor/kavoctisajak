@@ -40,7 +40,7 @@ class Commands():
         await self.bot.reply_to(msg, "https://github.com/viraxor/kavoctisajak")
 
     async def ip(self, msg):
-        await self.bot.reply_to(msg, f"{random.randint(0,255).{random.randint(0,255)}.{random.randint(0,255)}.{random.randint(0,255)}")
+        await self.bot.reply_to(msg, f"{random.randint(0,255)}.{random.randint(0,255)}.{random.randint(0,255)}.{random.randint(0,255)}")
         
     async def process(self, msg):
         args = msg.text[2:].split(" ")
