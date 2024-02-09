@@ -14,7 +14,8 @@ class Commands():
         "ip": self.ip,
         "help": self.help,
         "reverse": self.reverse,
-        "capslock": self.capslock
+        "capslock": self.capslock,
+        "lowercase": self.lowercase,
         }
 
         self.construct_help()
@@ -83,6 +84,15 @@ class Commands():
             await self.bot.reply_to(msg, ' '.join(args).swapcase())
         elif msg.reply_to_message:
             await self.bot.reply_to(msg, msg.reply_to_message.text.swapcase())
+        else:
+            await self.bot.reply_to(msg, "You need to pass an argument/reply to a message.")
+
+    async def lowercase(self, msg, args=None):
+        """Usage: k!lowercase <sentence> | Turns the sentence into lowercase."""
+        if args != []:
+            await self.bot.reply_to(msg, ' '.join(args).lower())
+        elif msg.reply_to_message:
+            await self.bot.reply_to(msg, msg.reply_to_message.text.lower())
         else:
             await self.bot.reply_to(msg, "You need to pass an argument/reply to a message.")
         
