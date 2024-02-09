@@ -168,19 +168,19 @@ class Commands():
     async def rot(self, msg, args=None):
         """Usage: k!rot <number> <sentence> | Does a ROT cipher on a sentence."""
         if len(args) > 1:
-            try:
-                number = int(args[0])
-                sentence = ''.join(args[1:])
-            except:
-                number = 13
-                sentence = ''.join(args[0:])
-            
+            number = int(args[0])
+            sentence = ''.join(args[1:])
             fn = partial(self.rot_r, sentence, number)
             output = await self.loop.run_in_executor(None, fn)
             await self.bot.reply_to(msg, output)
         elif msg.reply_to_message:
             number = int(args[0])
             fn = partial(self.rot_r, msg.reply_to_message.text, number)
+            output = await self.loop.run_in_executor(None, fn)
+            await self.bot.reply_to(msg, output)
+        elif len(args) == 1:
+            sentence = ''.join(args[0:])
+            fn = partial(self.rot_r, sentence, 13)
             output = await self.loop.run_in_executor(None, fn)
             await self.bot.reply_to(msg, output)
         else:
