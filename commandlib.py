@@ -6,7 +6,6 @@ class Commands():
         
         self.command_dict = {
         "hello": self.hello,
-        "reload": self.nothing,
         "say": self.say,
         "roll": self.roll,
         "github": self.github,
