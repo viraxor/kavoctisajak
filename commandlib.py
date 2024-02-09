@@ -69,7 +69,7 @@ class Commands():
 
     async def reverse(self, msg, args=None):
         """Usage: k!reverse <sentence> | Reverses the text."""
-        if args == []:
+        if args != []:
             await self.bot.reply_to(msg, ' '.join(args)[::-1])
         elif msg.reply_to_message:
             await self.bot.reply_to(msg, msg.reply_to_message.text[::-1])
