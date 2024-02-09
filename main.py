@@ -35,10 +35,16 @@ async def reload(msg):
         await bot.send_message(msg.chat.id, "saving commands")
         with open(f"./commandlib.py", "wb") as f:
             f.write(content)
-        
-        importlib.reload(commandlib)
-        commands = commandlib.Commands(bot)
-        await bot.send_message(msg.chat.id, "success")
+
+        old_commands = commands
+        try:
+            importlib.reload(commandlib)
+            commands = commandlib.Commands(bot)
+        except Exception as exc:
+            commands = old_commands
+            await self.bot.reply_to(msg, f"{type(exc)}: {exc}")
+        else:
+            await bot.send_message(msg.chat.id, "success")
 
 @bot.message_handler(commands=["help", "start"])
 async def welcome(msg):
