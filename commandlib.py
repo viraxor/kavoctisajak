@@ -18,7 +18,8 @@ class Commands():
         "capslock": self.capslock,
         "lowercase": self.lowercase,
         "repeat": self.repeat,
-        "shuffle": self.shuffle
+        "shuffle": self.shuffle,
+        "mock": self.mock,
         }
 
         self.construct_help()
@@ -132,7 +133,7 @@ class Commands():
     def mock_r(self, text):
         for i in range(0, len(text)-1):
             if random.randint(0, 1) == 1:
-                text[i] = text[i].upper()
+                text[i] = text[i].swapcase()
         return text
 
     async def mock(self, msg, args=None):
