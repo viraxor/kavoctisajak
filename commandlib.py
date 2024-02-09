@@ -12,7 +12,8 @@ class Commands():
         "github": self.github,
         "cock": self.cock,
         "ip": self.ip,
-        "help": self.help
+        "help": self.help,
+        "reverse": self.reverse,
         }
 
         self.construct_help()
@@ -65,6 +66,10 @@ class Commands():
     async def ip(self, msg, args=None):
         """Sends a random IP address."""
         await self.bot.reply_to(msg, f"{random.randint(0,255)}.{random.randint(0,255)}.{random.randint(0,255)}.{random.randint(0,255)}")
+
+    async def reverse(self, msg, args=None):
+        """Usage: k!reverse <sentence> | Reverses the text."""
+        await self.bot.reply_to(msg, ' '.join(args)[::-1])
         
     async def process(self, msg):
         args = msg.text[2:].split(" ")
