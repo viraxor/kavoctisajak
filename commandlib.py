@@ -161,6 +161,8 @@ class Commands():
                 new += chr((order - 97 + n % 26) + 97)
             elif order >= 65:
                 new += chr((order - 65 + n % 26) + 65)
+            else:
+                new += i
         return new
 
     async def rot(self, msg, args=None):
