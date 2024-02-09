@@ -16,6 +16,7 @@ class Commands():
         "reverse": self.reverse,
         "capslock": self.capslock,
         "lowercase": self.lowercase,
+        "repeat": self.repeat,
         }
 
         self.construct_help()
@@ -93,6 +94,15 @@ class Commands():
             await self.bot.reply_to(msg, ' '.join(args).lower())
         elif msg.reply_to_message:
             await self.bot.reply_to(msg, msg.reply_to_message.text.lower())
+        else:
+            await self.bot.reply_to(msg, "You need to pass an argument/reply to a message.")
+
+    async def repeat(self, msg, args=None):
+        """Usage: k!repeat <number> <sentence> | Repeats a sentence <number> times."""
+        if len(args) != 1:
+            await self.bot.reply_to(msg, ' '.join(args[1:]) * int(args[0]))
+        elif msg.reply_to_message:
+            await self.bot.reply_to(msg, msg.reply_to_message.text * int(args[0]))
         else:
             await self.bot.reply_to(msg, "You need to pass an argument/reply to a message.")
         
