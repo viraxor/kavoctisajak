@@ -99,7 +99,7 @@ class Commands():
 
     async def repeat(self, msg, args=None):
         """Usage: k!repeat <number> <sentence> | Repeats a sentence <number> times."""
-        if len(args) != 1:
+        if len(args) >= 1:
             await self.bot.reply_to(msg, ' '.join(args[1:]) * int(args[0]))
         elif msg.reply_to_message:
             await self.bot.reply_to(msg, msg.reply_to_message.text * int(args[0]))
