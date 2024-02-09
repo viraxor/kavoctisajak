@@ -128,6 +128,27 @@ class Commands():
             await self.bot.reply_to(msg, output)
         else:
             await self.bot.reply_to(msg, "You need to pass an argument/reply to a message.")
+
+    def mock_r(self, text):
+        for i in range(0, len(text)-1):
+            if random.randint(0, 1) == 1:
+                text[i] = text[i].upper()
+        return text
+
+    async def mock(self, msg, args=None):
+        """Usage: k!mock <sentence> | Mocks a sentence."""
+        if args != []:
+            text = ' '.join(args)
+            fn = partial(self.mock_r, text)
+            output = await self.loop.run_in_executor(None, fn)
+            await self.bot.reply_to(msg, output)
+        elif msg.reply_to_message:
+            text = msg.reply_to_message.text
+            fn = partial(self.mock_r, text)
+            output = await self.loop.run_in_executor(None, fn)
+            await self.bot.reply_to(msg, output)
+        else:
+            await self.bot.reply_to(msg, "You need to pass an argument/reply to a message.")
             
     async def process(self, msg):
         args = msg.text[2:].split(" ")
