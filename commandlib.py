@@ -20,6 +20,7 @@ class Commands():
         "repeat": self.repeat,
         "shuffle": self.shuffle,
         "mock": self.mock,
+        "rot": self.rot,
         }
 
         self.construct_help()
@@ -147,6 +148,32 @@ class Commands():
         elif msg.reply_to_message:
             text = msg.reply_to_message.text
             fn = partial(self.mock_r, text)
+            output = await self.loop.run_in_executor(None, fn)
+            await self.bot.reply_to(msg, output)
+        else:
+            await self.bot.reply_to(msg, "You need to pass an argument/reply to a message.")
+
+    def rot_r(self, text, n):
+        new = ""
+        for i in text:
+            order = ord(i)
+            if order >= 97 and order <= 122:
+                new += chr((order - 97 + n % 26) + 97)
+            elif order >= 65:
+                new += chr((order - 65 + n % 26) + 65)
+        return new
+
+    async def rot(self, msg, args=None):
+        """Usage: k!rot <number> <sentence> | Does a ROT cipher on a sentence."""
+        if len(args) > 1:
+            number = int(args[0])
+            sentence = ''.join(args[1:])
+            fn = partial(self.rot_r, sentence, number)
+            output = await self.loop.run_in_executor(None, fn)
+            await self.bot.reply_to(msg, output)
+        elif msg.reply_to_message:
+            number = int(args[0])
+            fn = partial(self.rot_r, msg.reply_to_message.text, number)
             output = await self.loop.run_in_executor(None, fn)
             await self.bot.reply_to(msg, output)
         else:
