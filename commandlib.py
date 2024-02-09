@@ -1,5 +1,6 @@
 import random
 import asyncio
+from functools import partial
 
 class Commands():
     def __init__(self, bot):
@@ -17,6 +18,7 @@ class Commands():
         "capslock": self.capslock,
         "lowercase": self.lowercase,
         "repeat": self.repeat,
+        "shuffle": self.shuffle
         }
 
         self.construct_help()
@@ -106,7 +108,27 @@ class Commands():
             await self.bot.reply_to(msg, msg.reply_to_message.text * int(args[0]))
         else:
             await self.bot.reply_to(msg, "You need to pass an argument/reply to a message.")
-        
+
+    def shuffle_r(self, text):
+        text = list(text)
+        random.shuffle(text)
+        return ''.join(text)
+
+    async def shuffle(self, msg, args=None):
+        """Usage: k!shuffle <sentence> | Shuffles text."""
+        if args != []:
+            text = ' '.join(args)
+            fn = partial(self.shuffle_r, text)
+            output = await self.loop.run_in_executor(None, fn)
+            await self.bot.reply_to(msg, output)
+        elif msg.reply_to_message:
+            text = msg.reply_to_message.text
+            fn = partial(self.shuffle_r, text)
+            output = await self.loop.run_in_executor(None, fn)
+            await self.bot.reply_to(msg, output)
+        else:
+            await self.bot.reply_to(msg, "You need to pass an argument/reply to a message.")
+            
     async def process(self, msg):
         args = msg.text[2:].split(" ")
         
