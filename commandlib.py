@@ -14,6 +14,7 @@ class Commands():
         "ip": self.ip,
         "help": self.help,
         "reverse": self.reverse,
+        "capslock": self.capslock
         }
 
         self.construct_help()
@@ -73,6 +74,15 @@ class Commands():
             await self.bot.reply_to(msg, ' '.join(args)[::-1])
         elif msg.reply_to_message:
             await self.bot.reply_to(msg, msg.reply_to_message.text[::-1])
+        else:
+            await self.bot.reply_to(msg, "You need to pass an argument/reply to a message.")
+
+    async def capslock(self, msg, args=None):
+        """Usage: k!capslock <sentence> | Swaps the case of the text."""
+        if args != []:
+            await self.bot.reply_to(msg, ' '.join(args).swapcase())
+        elif msg.reply_to_message:
+            await self.bot.reply_to(msg, msg.reply_to_message.text.swapcase())
         else:
             await self.bot.reply_to(msg, "You need to pass an argument/reply to a message.")
         
