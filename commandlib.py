@@ -166,7 +166,7 @@ class Commands():
         return new
 
     async def rot(self, msg, args=None):
-        """Usage: k!rot <number> <sentence> | Does a ROT cipher on a sentence."""
+        """Usage: k!rot <number> <sentence> | Does a ROT cipher on a sentence. <number> defaults to 13."""
         if len(args) > 1:
             number = int(args[0])
             sentence = ''.join(args[1:])
