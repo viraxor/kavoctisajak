@@ -200,10 +200,10 @@ class Commands():
             await self.bot.reply_to(msg, "You need to pass an argument/reply to a message.")
             
     async def process(self, msg):
-        args = msg.text[2:].split(" ")
+        args = msg.text[2:].strip().split(" ")
         
         try:
-            function = self.command_dict[args[0].strip()]
+            function = self.command_dict[args[0]]
         except KeyError:
             await self.bot.reply_to(msg, "Invalid command.")
         else:
