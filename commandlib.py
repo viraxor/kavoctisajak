@@ -17,6 +17,8 @@ class Commands():
         "reverse": self.reverse,
         "capslock": self.capslock,
         "lowercase": self.lowercase,
+        "uppercase": self.uppercase,
+        "shout": self.shout,
         "repeat": self.repeat,
         "shuffle": self.shuffle,
         "mock": self.mock,
@@ -102,6 +104,15 @@ class Commands():
         else:
             await self.bot.reply_to(msg, "You need to pass an argument/reply to a message.")
 
+    async def uppercase(self, msg, args=None):
+        """Usage: k!uppercase <sentence> | Turns the sentence into uppercase."""
+        if args != []:
+            await self.bot.reply_to(msg, ' '.join(args).upper())
+        elif msg.reply_to_message:
+            await self.bot.reply_to(msg, msg.reply_to_message.text.upper())
+        else:
+            await self.bot.reply_to(msg, "You need to pass an argument/reply to a message.")
+            
     async def repeat(self, msg, args=None):
         """Usage: k!repeat <number> <sentence> | Repeats a sentence <number> times."""
         if len(args) > 1:
@@ -193,7 +204,7 @@ class Commands():
         args = msg.text[2:].split(" ")
         
         try:
-            function = self.command_dict[args[0]]
+            function = self.command_dict[args[0].strip()]
         except KeyError:
             await self.bot.reply_to(msg, "Invalid command.")
         else:
