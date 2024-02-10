@@ -18,7 +18,6 @@ class Commands():
         "capslock": self.capslock,
         "lowercase": self.lowercase,
         "uppercase": self.uppercase,
-        "shout": self.shout,
         "repeat": self.repeat,
         "shuffle": self.shuffle,
         "mock": self.mock,
