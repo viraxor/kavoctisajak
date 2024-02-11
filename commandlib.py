@@ -87,7 +87,7 @@ class Commands():
             key += "-"
         return key[:-1]
 
-    async def productkey(self, msg):
+    async def productkey(self, msg, args=None):
         """Sends a random (fake) Windows product key."""
         fn = partial(self.make_key)
         output = await self.loop.run_in_executor(None, fn)
