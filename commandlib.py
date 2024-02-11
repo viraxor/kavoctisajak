@@ -13,6 +13,7 @@ class Commands():
         "github": self.github,
         "cock": self.cock,
         "ip": self.ip,
+        "productkey": self.productkey,
         "help": self.help,
         "reverse": self.reverse,
         "capslock": self.capslock,
@@ -26,6 +27,8 @@ class Commands():
 
         self.construct_help()
         self.loop = asyncio.get_event_loop()
+
+        self.key_alphabet = "BCDFGHJKMPQRTUVWXY2346789"
 
     def construct_help(self):
         self.help_msg = ""
@@ -76,6 +79,20 @@ class Commands():
         """Sends a random IP address."""
         await self.bot.reply_to(msg, f"{random.randint(0,255)}.{random.randint(0,255)}.{random.randint(0,255)}.{random.randint(0,255)}")
 
+    def make_key(self):
+        key = ""
+        for i in range(5):
+            for j in range(5):
+                key += random.choice(self.key_alphabet)
+            key += "-"
+        return key[:-1]
+
+    async def productkey(self, msg):
+        """Sends a random (fake) Windows product key."""
+        fn = partial(self.make_key)
+        output = await self.loop.run_in_executor(None, fn)
+        await self.bot.reply_to(msg, output)
+    
     async def reverse(self, msg, args=None):
         """Usage: k!reverse <sentence> | Reverses the text."""
         if args != []:
